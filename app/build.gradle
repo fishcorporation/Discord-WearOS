@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId "com.zaffox.discordwear"
-        minSdk 30
+        minSdk 28
         targetSdk 35
         versionCode 6
         versionName "1.4"

@@ -23,18 +23,17 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Decode Keystore
+      - name: Generate Keystore
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/release-key.jks
-
+          keytool -genkey -v -keystore app/release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias -storepass mypassword -keypass mypassword -dname "CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown"
 
       - name: Build release APK
         run: ./gradlew app:assembleRelease --stacktrace
         env:
           KEYSTORE_PATH: release-key.jks
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEYSTORE_PASSWORD: mypassword
+          KEY_ALIAS: my-alias
+          KEY_PASSWORD: mypassword
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

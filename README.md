@@ -1,5 +1,7 @@
 
 # Discord-wear
+
+## vibecoded port for sdk 28 (android 9)
 Discord For WearOS
 ### 3RD PARTY CLIENTS VIOLATE DISCORDS TERMS OF SERVICE
 ### I AM NOT RESPONSIBLE FOR ANY BANS
